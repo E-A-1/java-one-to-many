@@ -1,14 +1,15 @@
 package com.example.springboot.application.entitiy;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -33,9 +34,11 @@ public class User {
  * 
  */
 
-    @OneToMany
-    @JoinColumn(name = "roleId")  
+    @OneToMany(fetch = FetchType.EAGER)
+    @JoinColumn(name = "roleId",nullable = true)  
     private List<UserRole> roles;
+    @Column(name = "start_date",columnDefinition = "date")
+private Date startDate;
 
     private String userPhoneNumber;
 }
